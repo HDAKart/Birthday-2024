@@ -1,0 +1,364 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6yijk8xxons3"]
+
+[ext_resource type="Script" path="res://Scripts/Scenes/main_menu.gd" id="1_tuja2"]
+[ext_resource type="Texture2D" uid="uid://b3joxuvm5n5iu" path="res://Backgrounds/Background_default_Light_textured_v2.png" id="2_ussj4"]
+[ext_resource type="PackedScene" uid="uid://bbqw6241s2yv3" path="res://Buttons/setting_button.tscn" id="4_gxd4o"]
+[ext_resource type="Texture2D" uid="uid://1paq1j4nvm1c" path="res://Texture/Exit_button_normal.PNG" id="7_38vfe"]
+[ext_resource type="Texture2D" uid="uid://dm4nau6nmdjws" path="res://Texture/Exit_button_pressed.png" id="8_ysdsr"]
+[ext_resource type="Texture2D" uid="uid://drpqghl7r0eex" path="res://Texture/Exit_button_Hover.png" id="9_ipg8e"]
+[ext_resource type="Theme" uid="uid://cp1430xlncsx2" path="res://Fauna_2024_birthday_game_theme.tres" id="11_fvk40"]
+
+[sub_resource type="Animation" id="Animation_vkvf8"]
+resource_name = "Entrance_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(768, 1104), Vector2(768, 451.5)]
+}
+
+[sub_resource type="Animation" id="Animation_bs0qu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(768, 451.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uftph"]
+_data = {
+"Entrance_animation": SubResource("Animation_vkvf8"),
+"RESET": SubResource("Animation_bs0qu")
+}
+
+[sub_resource type="Animation" id="Animation_vfnnt"]
+resource_name = "Open_settings"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cover:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.556863, 0.556863, 0.556863, 0), Color(0.556863, 0.556863, 0.556863, 0.619608)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SettingsPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(640, 1200), Vector2(640, 176)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qygyr"]
+_data = {
+"Open_settings": SubResource("Animation_vfnnt")
+}
+
+[sub_resource type="Animation" id="Animation_3stib"]
+resource_name = "Exit_prompt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.556863, 0.556863, 0.556863, 0), Color(0.556863, 0.556863, 0.556863, 0.619608)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Exit_conformation_panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(640, 1200), Vector2(640, 304)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x30eh"]
+_data = {
+"Exit_prompt": SubResource("Animation_3stib")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tuja2")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ussj4")
+stretch_mode = 4
+
+[node name="RichTextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -557.0
+offset_top = 79.0
+offset_right = 734.0
+offset_bottom = 204.0
+grow_horizontal = 2
+theme = ExtResource("11_fvk40")
+text = "FAUNA'S 2024 BIRTHDAY "
+
+[node name="SettingButton" parent="." node_paths=PackedStringArray("settings", "settings_exit_button", "Settings_background", "settings_animation") instance=ExtResource("4_gxd4o")]
+layout_mode = 1
+offset_left = -144.0
+offset_top = -304.0
+offset_right = -80.0
+offset_bottom = 16.0
+settings = NodePath("../Settings")
+settings_exit_button = NodePath("../Settings/SettingsPanel/ExitButton2")
+Settings_background = NodePath("../Settings/Cover")
+settings_animation = NodePath("../Settings/Settings_animation")
+
+[node name="MainMenuButtons" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 768.0
+offset_top = 451.5
+offset_right = 1584.0
+offset_bottom = 1800.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.467865, 0.381188)
+theme_override_constants/separation = 90
+
+[node name="PlayButton" type="Button" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(385, 128)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("11_fvk40")
+text = "PLAY"
+
+[node name="GalleryButton" type="Button" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(385, 128)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("11_fvk40")
+text = "GALLERY"
+
+[node name="CreditsButton" type="Button" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(385, 128)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("11_fvk40")
+text = "CREDITS"
+
+[node name="ExitButton" type="Button" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(385, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("11_fvk40")
+text = "EXIT"
+
+[node name="ButtonsAnimation" type="AnimationPlayer" parent="MainMenuButtons"]
+libraries = {
+"": SubResource("AnimationLibrary_uftph")
+}
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cover" type="ColorRect" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.556863, 0.556863, 0.556863, 0)
+
+[node name="CoverButton" type="Button" parent="Settings/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="SettingsPanel" type="Panel" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = 660.0
+offset_right = 960.0
+offset_bottom = 2060.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("11_fvk40")
+
+[node name="ExitButton2" type="TextureButton" parent="Settings/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_right = 928.0
+offset_bottom = 1024.0
+grow_horizontal = 0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("7_38vfe")
+texture_pressed = ExtResource("8_ysdsr")
+texture_hover = ExtResource("9_ipg8e")
+
+[node name="Settings_animation" type="AnimationPlayer" parent="Settings"]
+libraries = {
+"": SubResource("AnimationLibrary_qygyr")
+}
+
+[node name="Exit_conformation" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Exit_conformation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.556863, 0.556863, 0.556863, 0)
+
+[node name="Exit_conformation_panel" type="Panel" parent="Exit_conformation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = 660.0
+offset_right = 960.0
+offset_bottom = 1396.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("11_fvk40")
+
+[node name="Exit_text" type="Label" parent="Exit_conformation/Exit_conformation_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -176.0
+offset_right = 463.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_fvk40")
+text = "Do you want to Quit?"
+
+[node name="Exit_confirmed" type="Button" parent="Exit_conformation/Exit_conformation_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -16.0
+offset_right = 190.0
+offset_bottom = 327.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.632879, 0.632879)
+theme = ExtResource("11_fvk40")
+theme_override_font_sizes/font_size = 113
+text = "YES"
+
+[node name="Exit_canceled" type="Button" parent="Exit_conformation/Exit_conformation_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -16.0
+offset_right = 636.0
+offset_bottom = 327.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.632879, 0.632879)
+theme = ExtResource("11_fvk40")
+theme_override_font_sizes/font_size = 113
+text = "CANCEL"
+
+[node name="Exit_prompt_animation" type="AnimationPlayer" parent="Exit_conformation"]
+libraries = {
+"": SubResource("AnimationLibrary_x30eh")
+}
+
+[connection signal="pressed" from="MainMenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/GalleryButton" to="." method="_on_gallery_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Settings/Cover/CoverButton" to="SettingButton" method="_on_exit_button_2_pressed"]
+[connection signal="pressed" from="Settings/SettingsPanel/ExitButton2" to="SettingButton" method="_on_exit_button_2_pressed"]
+[connection signal="pressed" from="Exit_conformation/Exit_conformation_panel/Exit_confirmed" to="." method="_on_exit_confirmed_pressed"]
+[connection signal="pressed" from="Exit_conformation/Exit_conformation_panel/Exit_canceled" to="." method="_on_exit_canceled_pressed"]

@@ -1,0 +1,318 @@
+[gd_scene load_steps=16 format=3 uid="uid://5c1i1srfx4xn"]
+
+[ext_resource type="Texture2D" uid="uid://b3joxuvm5n5iu" path="res://Backgrounds/Background_default_Light_textured_v2.png" id="1_c7vjb"]
+[ext_resource type="Script" path="res://Scripts/Scenes/game_screen.gd" id="1_s1m85"]
+[ext_resource type="PackedScene" uid="uid://bbqw6241s2yv3" path="res://Buttons/setting_button.tscn" id="3_kjvt8"]
+[ext_resource type="Theme" uid="uid://cp1430xlncsx2" path="res://Fauna_2024_birthday_game_theme.tres" id="4_hbctw"]
+[ext_resource type="Texture2D" uid="uid://k68yx5eypgpj" path="res://Texture/Arrow_button_normal.png" id="4_s61tk"]
+[ext_resource type="Texture2D" uid="uid://1paq1j4nvm1c" path="res://Texture/Exit_button_normal.PNG" id="5_573yx"]
+[ext_resource type="Texture2D" uid="uid://cw581gv0vqs7" path="res://Texture/Arrow_button_pressed.png" id="5_khe2d"]
+[ext_resource type="Texture2D" uid="uid://dm4nau6nmdjws" path="res://Texture/Exit_button_pressed.png" id="6_2ha1k"]
+[ext_resource type="Texture2D" uid="uid://bng6stlaow4jr" path="res://Texture/Arrow_button_Hover.png" id="6_ney74"]
+[ext_resource type="Texture2D" uid="uid://drpqghl7r0eex" path="res://Texture/Exit_button_Hover.png" id="7_ihesu"]
+[ext_resource type="Texture2D" uid="uid://g8uwb3jk0ikg" path="res://Texture/Undo arrow.png" id="7_srsnv"]
+[ext_resource type="Texture2D" uid="uid://c30ms43om2gxw" path="res://Texture/Undo_arrow_pressed.png" id="8_jqurg"]
+[ext_resource type="Texture2D" uid="uid://wh86d6etsb36" path="res://Texture/Undo_arrow_hover.png" id="9_ko1cb"]
+
+[sub_resource type="Animation" id="Animation_vfnnt"]
+resource_name = "Open_settings"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cover:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.556863, 0.556863, 0.556863, 0), Color(0.556863, 0.556863, 0.556863, 0.619608)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SettingsPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(640, 1200), Vector2(640, 176)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qygyr"]
+_data = {
+"Open_settings": SubResource("Animation_vfnnt")
+}
+
+[node name="Game_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s1m85")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c7vjb")
+stretch_mode = 4
+
+[node name="RichTextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -528.0
+offset_top = 80.0
+offset_right = 544.0
+offset_bottom = 209.0
+grow_horizontal = 2
+theme = ExtResource("4_hbctw")
+text = "LEVEL Screen"
+horizontal_alignment = 1
+
+[node name="SettingButton" parent="." node_paths=PackedStringArray("settings", "settings_exit_button", "Settings_background", "settings_animation") instance=ExtResource("3_kjvt8")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 64.0
+offset_bottom = 320.0
+grow_horizontal = 1
+settings = NodePath("../Settings")
+settings_exit_button = NodePath("../Settings/SettingsPanel/ExitButton2")
+Settings_background = NodePath("../Settings/Cover")
+settings_animation = NodePath("../Settings/Settings_animation")
+
+[node name="GameButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -464.0
+offset_top = -280.0
+offset_right = 816.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 256
+alignment = 1
+
+[node name="Previous_level" type="TextureButton" parent="GameButtons"]
+layout_mode = 2
+texture_normal = ExtResource("4_s61tk")
+texture_pressed = ExtResource("5_khe2d")
+texture_hover = ExtResource("6_ney74")
+
+[node name="Undo" type="TextureButton" parent="GameButtons"]
+layout_mode = 2
+texture_normal = ExtResource("7_srsnv")
+texture_pressed = ExtResource("8_jqurg")
+texture_hover = ExtResource("9_ko1cb")
+
+[node name="Next_level" type="TextureButton" parent="GameButtons"]
+layout_mode = 2
+texture_normal = ExtResource("4_s61tk")
+texture_pressed = ExtResource("5_khe2d")
+texture_hover = ExtResource("6_ney74")
+flip_h = true
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cover" type="ColorRect" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.556863, 0.556863, 0.556863, 0)
+
+[node name="CoverButton" type="Button" parent="Settings/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="SettingsPanel" type="Panel" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = 660.0
+offset_right = 960.0
+offset_bottom = 2060.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_hbctw")
+
+[node name="Control" type="Control" parent="Settings/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -448.0
+offset_top = -408.0
+offset_right = 448.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GoToLevelSelect" type="Button" parent="Settings/SettingsPanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -306.0
+offset_right = 17.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level Select"
+
+[node name="Restart" type="Button" parent="Settings/SettingsPanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = -306.0
+offset_right = 415.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESTART"
+
+[node name="GoToMainMenu" type="Button" parent="Settings/SettingsPanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -96.0
+offset_right = 416.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+
+[node name="ExitButton2" type="TextureButton" parent="Settings/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_right = 928.0
+offset_bottom = 1024.0
+grow_horizontal = 0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_573yx")
+texture_pressed = ExtResource("6_2ha1k")
+texture_hover = ExtResource("7_ihesu")
+
+[node name="Sound_sliders" type="VBoxContainer" parent="Settings/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -508.0
+offset_right = 448.0
+offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Settings/SettingsPanel/Sound_sliders"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSlider" type="HSlider" parent="Settings/SettingsPanel/Sound_sliders/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -448.0
+offset_top = 32.0
+offset_right = 448.0
+offset_bottom = 128.0
+grow_horizontal = 2
+theme = ExtResource("4_hbctw")
+
+[node name="BGM" type="Label" parent="Settings/SettingsPanel/Sound_sliders/Control"]
+layout_mode = 0
+offset_top = -24.0
+offset_right = 160.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 64
+text = "BGM"
+
+[node name="Control2" type="Control" parent="Settings/SettingsPanel/Sound_sliders"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSlider" type="HSlider" parent="Settings/SettingsPanel/Sound_sliders/Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -448.0
+offset_top = 32.0
+offset_right = 448.0
+offset_bottom = 128.0
+grow_horizontal = 2
+
+[node name="BGM2" type="Label" parent="Settings/SettingsPanel/Sound_sliders/Control2"]
+layout_mode = 0
+offset_top = -9.0
+offset_right = 160.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 64
+text = "SFX"
+
+[node name="Settings_animation" type="AnimationPlayer" parent="Settings"]
+libraries = {
+"": SubResource("AnimationLibrary_qygyr")
+}
+
+[connection signal="pressed" from="Settings/Cover/CoverButton" to="SettingButton" method="_on_exit_button_2_pressed"]
+[connection signal="pressed" from="Settings/SettingsPanel/Control/GoToLevelSelect" to="." method="Level_select_button"]
+[connection signal="pressed" from="Settings/SettingsPanel/Control/Restart" to="." method="restart_button"]
+[connection signal="pressed" from="Settings/SettingsPanel/Control/GoToMainMenu" to="." method="Main_menu_button"]
+[connection signal="pressed" from="Settings/SettingsPanel/ExitButton2" to="SettingButton" method="_on_exit_button_2_pressed"]

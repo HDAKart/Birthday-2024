@@ -1,0 +1,814 @@
+[gd_scene load_steps=25 format=3 uid="uid://m26dfl8bqfn6"]
+
+[ext_resource type="Texture2D" uid="uid://b3joxuvm5n5iu" path="res://Backgrounds/Background_default_Light_textured_v2.png" id="1_7a357"]
+[ext_resource type="Script" path="res://Scripts/Scenes/level_selection_screen.gd" id="1_sq45l"]
+[ext_resource type="PackedScene" uid="uid://bbqw6241s2yv3" path="res://Buttons/setting_button.tscn" id="4_elvds"]
+[ext_resource type="Texture2D" uid="uid://ckbkt5ut1ubmc" path="res://Texture/Campaign_normal.png" id="5_m3s6m"]
+[ext_resource type="Theme" uid="uid://cp1430xlncsx2" path="res://Fauna_2024_birthday_game_theme.tres" id="5_stlm2"]
+[ext_resource type="Texture2D" uid="uid://1paq1j4nvm1c" path="res://Texture/Exit_button_normal.PNG" id="6_vjgsb"]
+[ext_resource type="Texture2D" uid="uid://cdbs8rro0j2l8" path="res://Texture/Campaign_pressed.png" id="6_ytr5b"]
+[ext_resource type="Texture2D" uid="uid://cah8cyk45ud36" path="res://Texture/Campaign_hover.png" id="7_qw004"]
+[ext_resource type="Texture2D" uid="uid://dm4nau6nmdjws" path="res://Texture/Exit_button_pressed.png" id="7_w8w3y"]
+[ext_resource type="PackedScene" uid="uid://cngn2ioptq8hn" path="res://Buttons/back_button.tscn" id="8_3xx1w"]
+[ext_resource type="Texture2D" uid="uid://drpqghl7r0eex" path="res://Texture/Exit_button_Hover.png" id="8_7ixy2"]
+[ext_resource type="Texture2D" uid="uid://btmeyg0iy5gpe" path="res://Texture/Commuinty_normal.png" id="9_h1w2o"]
+[ext_resource type="Texture2D" uid="uid://bfa8dxwc0hsoj" path="res://Texture/Commuinty_pressed.png" id="10_hxmsv"]
+[ext_resource type="Texture2D" uid="uid://dkeghalpq487g" path="res://Texture/Level_Selection_button_normal.png" id="11_3ohy2"]
+[ext_resource type="Texture2D" uid="uid://cjk82gygj8c12" path="res://Texture/Commuinty_hover.png" id="11_bw0m5"]
+[ext_resource type="Texture2D" uid="uid://d3la7r50edafo" path="res://Texture/Level_Selection_button_pressed.png" id="12_wqfmc"]
+[ext_resource type="Texture2D" uid="uid://be5p4og0tjlm6" path="res://Texture/Level_Selection_button_Hover.png" id="13_6n73g"]
+[ext_resource type="Texture2D" uid="uid://dr3bm6ec7bvse" path="res://Texture/Level_Selection_button_Disabled.png" id="14_irk1o"]
+[ext_resource type="Texture2D" uid="uid://k68yx5eypgpj" path="res://Texture/Arrow_button_normal.png" id="15_qujd0"]
+[ext_resource type="Texture2D" uid="uid://cw581gv0vqs7" path="res://Texture/Arrow_button_pressed.png" id="16_dhoie"]
+[ext_resource type="Script" path="res://Scripts/Buttons/back_button.gd" id="16_nfesu"]
+[ext_resource type="Texture2D" uid="uid://bng6stlaow4jr" path="res://Texture/Arrow_button_Hover.png" id="17_3ksgy"]
+
+[sub_resource type="Animation" id="Animation_vfnnt"]
+resource_name = "Open_settings"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cover:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.556863, 0.556863, 0.556863, 0), Color(0.556863, 0.556863, 0.556863, 0.619608)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SettingsPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(640, 1200), Vector2(640, 176)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qygyr"]
+_data = {
+"Open_settings": SubResource("Animation_vfnnt")
+}
+
+[node name="Level_Selection_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sq45l")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7a357")
+stretch_mode = 4
+
+[node name="RichTextLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -528.0
+offset_top = 80.0
+offset_right = 544.0
+offset_bottom = 209.0
+grow_horizontal = 2
+theme = ExtResource("5_stlm2")
+text = "LEVEL SELECTION"
+
+[node name="SettingButton" parent="." node_paths=PackedStringArray("settings", "settings_exit_button", "Settings_background", "settings_animation") instance=ExtResource("4_elvds")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 64.0
+offset_bottom = 320.0
+grow_horizontal = 1
+settings = NodePath("../Settings")
+settings_exit_button = NodePath("../Settings/SettingsPanel/ExitButton2")
+Settings_background = NodePath("../Settings/Cover")
+settings_animation = NodePath("../Settings/Settings_animation")
+
+[node name="BackButton" parent="." instance=ExtResource("8_3xx1w")]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 384.0
+Target_scene = "res://Scenes/main_menu.tscn"
+
+[node name="Select_level_type" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -752.0
+offset_top = -320.0
+offset_right = 752.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Control" type="Control" parent="Select_level_type"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Campaign_button" type="TextureButton" parent="Select_level_type/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -320.0
+offset_right = 240.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0349066
+pivot_offset = Vector2(234, 292)
+texture_normal = ExtResource("5_m3s6m")
+texture_pressed = ExtResource("6_ytr5b")
+texture_hover = ExtResource("7_qw004")
+
+[node name="Control2" type="Control" parent="Select_level_type"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Community_levels_button" type="TextureButton" parent="Select_level_type/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.745
+offset_top = -315.769
+offset_right = 235.255
+offset_bottom = 324.231
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.0174533
+pivot_offset = Vector2(245.285, 284.835)
+texture_normal = ExtResource("9_h1w2o")
+texture_pressed = ExtResource("10_hxmsv")
+texture_hover = ExtResource("11_bw0m5")
+
+[node name="Campaign" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -592.0
+offset_top = -308.0
+offset_right = 592.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel2" type="Label" parent="Campaign"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = -152.0
+offset_right = 320.0
+offset_bottom = -23.0
+grow_horizontal = 2
+theme = ExtResource("5_stlm2")
+text = "CAMPAIGN"
+
+[node name="Campaign_levels_1" type="GridContainer" parent="Campaign"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -320.0
+offset_right = 368.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="Level_1" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+script = ExtResource("16_nfesu")
+Target_scene = "res://Scenes/game_screen.tscn"
+
+[node name="Level_2" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_3" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_4" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_5" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_6" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_7" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_8" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_9" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_10" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_11" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_12" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_13" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_14" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_15" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_16" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_17" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_18" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_19" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_20" type="TextureButton" parent="Campaign/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="TextureButton" type="TextureButton" parent="Campaign"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = 128.0
+grow_vertical = 2
+texture_normal = ExtResource("15_qujd0")
+texture_pressed = ExtResource("16_dhoie")
+texture_hover = ExtResource("17_3ksgy")
+
+[node name="TextureButton2" type="TextureButton" parent="Campaign"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("15_qujd0")
+texture_pressed = ExtResource("16_dhoie")
+texture_hover = ExtResource("17_3ksgy")
+flip_h = true
+
+[node name="back_button" type="Button" parent="Campaign"]
+layout_mode = 1
+offset_left = 12.0
+offset_top = -24.0
+offset_right = 172.0
+offset_bottom = 94.0
+theme = ExtResource("5_stlm2")
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="Commuinty" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -592.0
+offset_top = -308.0
+offset_right = 592.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel2" type="Label" parent="Commuinty"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = -136.0
+offset_right = 464.0
+offset_bottom = -7.0
+grow_horizontal = 2
+theme = ExtResource("5_stlm2")
+text = "COMMUINTY LEVEL"
+
+[node name="Campaign_levels_1" type="GridContainer" parent="Commuinty"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -320.0
+offset_right = 368.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="Level_1" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+script = ExtResource("16_nfesu")
+Target_scene = "res://Scenes/game_screen.tscn"
+
+[node name="Level_2" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_3" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_4" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_5" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_6" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_7" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_8" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_9" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_10" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_11" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_12" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_13" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_14" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_15" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_16" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_17" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_18" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_19" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="Level_20" type="TextureButton" parent="Commuinty/Campaign_levels_1"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+disabled = true
+texture_normal = ExtResource("11_3ohy2")
+texture_pressed = ExtResource("12_wqfmc")
+texture_hover = ExtResource("13_6n73g")
+texture_disabled = ExtResource("14_irk1o")
+
+[node name="TextureButton" type="TextureButton" parent="Commuinty"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = 128.0
+grow_vertical = 2
+texture_normal = ExtResource("15_qujd0")
+texture_pressed = ExtResource("16_dhoie")
+texture_hover = ExtResource("17_3ksgy")
+
+[node name="TextureButton2" type="TextureButton" parent="Commuinty"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("15_qujd0")
+texture_pressed = ExtResource("16_dhoie")
+texture_hover = ExtResource("17_3ksgy")
+flip_h = true
+
+[node name="back_button" type="Button" parent="Commuinty"]
+layout_mode = 1
+offset_left = 12.0
+offset_top = -24.0
+offset_right = 172.0
+offset_bottom = 94.0
+theme = ExtResource("5_stlm2")
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cover" type="ColorRect" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.556863, 0.556863, 0.556863, 0)
+
+[node name="CoverButton" type="Button" parent="Settings/Cover"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="SettingsPanel" type="Panel" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = 660.0
+offset_right = 960.0
+offset_bottom = 2060.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("5_stlm2")
+
+[node name="ExitButton2" type="TextureButton" parent="Settings/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_right = 928.0
+offset_bottom = 1024.0
+grow_horizontal = 0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_vjgsb")
+texture_pressed = ExtResource("7_w8w3y")
+texture_hover = ExtResource("8_7ixy2")
+
+[node name="Settings_animation" type="AnimationPlayer" parent="Settings"]
+libraries = {
+"": SubResource("AnimationLibrary_qygyr")
+}
+
+[connection signal="pressed" from="Select_level_type/Control/Campaign_button" to="." method="_on_campaign_button_pressed"]
+[connection signal="pressed" from="Select_level_type/Control2/Community_levels_button" to="." method="_on_community_levels_button_pressed"]
+[connection signal="pressed" from="Campaign/Campaign_levels_1/Level_1" to="Campaign/Campaign_levels_1/Level_1" method="_on_pressed"]
+[connection signal="pressed" from="Campaign/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Commuinty/Campaign_levels_1/Level_1" to="Commuinty/Campaign_levels_1/Level_1" method="_on_pressed"]
+[connection signal="pressed" from="Commuinty/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Settings/Cover/CoverButton" to="SettingButton" method="_on_exit_button_2_pressed"]
+[connection signal="pressed" from="Settings/SettingsPanel/ExitButton2" to="SettingButton" method="_on_exit_button_2_pressed"]

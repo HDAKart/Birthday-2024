@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cngn2ioptq8hn"]
+
+[ext_resource type="Texture2D" uid="uid://cvvtwydowfsrn" path="res://Texture/Back_Button_normal.png" id="1_v3chk"]
+[ext_resource type="Texture2D" uid="uid://ba45kr5bd5kmc" path="res://Texture/Back_Button_Pressed.png" id="2_xnec8"]
+[ext_resource type="Texture2D" uid="uid://cnnljg5rakou0" path="res://Texture/Back_Button_Hover.png" id="3_x4iry"]
+[ext_resource type="Script" path="res://scripts/Buttons/back_button.gd" id="4_oq6m7"]
+
+[node name="BackButton" type="TextureButton"]
+offset_left = 320.0
+offset_right = 576.0
+offset_bottom = 256.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_v3chk")
+texture_pressed = ExtResource("2_xnec8")
+texture_hover = ExtResource("3_x4iry")
+stretch_mode = 0
+script = ExtResource("4_oq6m7")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

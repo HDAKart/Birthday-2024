@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbqw6241s2yv3"]
+
+[ext_resource type="Texture2D" uid="uid://qg4trl5iuvm" path="res://Texture/Settings_Button_normal.png" id="1_xjr8e"]
+[ext_resource type="Texture2D" uid="uid://c38uhgob3wd05" path="res://Texture/Settings_Button_pressed.png" id="2_wffv2"]
+[ext_resource type="Texture2D" uid="uid://b0u1cj6f1ystb" path="res://Texture/Settings_Button_Hover.png" id="3_wimqd"]
+[ext_resource type="Script" path="res://Scripts/Buttons/setting_button.gd" id="4_jdkys"]
+
+[sub_resource type="Animation" id="Animation_8gcci"]
+resource_name = "Settings_enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(1760, -336), Vector2(1760, -192)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovku8"]
+_data = {
+"Settings_enter": SubResource("Animation_8gcci")
+}
+
+[node name="SettingButton" type="TextureButton"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = -336.0
+offset_right = -96.0
+offset_bottom = -16.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_xjr8e")
+texture_pressed = ExtResource("2_wffv2")
+texture_hover = ExtResource("3_wimqd")
+script = ExtResource("4_jdkys")
+
+[node name="Settings_button_animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ovku8")
+}
+
+[connection signal="pressed" from="." to="." method="_on_setting_button_pressed"]

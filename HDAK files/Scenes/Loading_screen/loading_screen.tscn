@@ -1,0 +1,166 @@
+[gd_scene load_steps=7 format=3 uid="uid://bviu07ikkc8mq"]
+
+[ext_resource type="Script" path="res://Scripts/Loading Screen/loading_screen.gd" id="1_x7uri"]
+[ext_resource type="Texture2D" uid="uid://b3joxuvm5n5iu" path="res://Backgrounds/Background_default_Light_textured_v2.png" id="2_qtp03"]
+[ext_resource type="Theme" uid="uid://cp1430xlncsx2" path="res://Fauna_2024_birthday_game_theme.tres" id="3_6hy48"]
+
+[sub_resource type="Animation" id="Animation_1h7ff"]
+resource_name = "Page_flip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2048, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.34, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wyr5s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect2:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1920, 1080)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextureRect:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6abh"]
+_data = {
+"Page_flip": SubResource("Animation_1h7ff"),
+"RESET": SubResource("Animation_wyr5s")
+}
+
+[node name="Loading_screen" type="CanvasLayer"]
+script = ExtResource("1_x7uri")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qtp03")
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.486275, 0.486275, 0.486275, 0.560784)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -100.0
+offset_right = 416.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_6hy48")
+theme_override_font_sizes/normal_font_size = 138
+text = "LOADING..."
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q6abh")
+}
