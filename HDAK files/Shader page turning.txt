@@ -1,0 +1,62 @@
+shader_type canvas_item;
+
+//Add to Texture_rect
+//change the scale from 0 to 3
+//just needs to change the direction and remove the screenshot of the previous scene from reappearing again
+
+#define r 0.3
+#define rep 3.0
+
+uniform float scale;
+
+void fragment(){
+	vec2 Resolution = 1.0 / SCREEN_PIXEL_SIZE;
+	vec4 finalColor = vec4(0.0);
+	float R = r *  Resolution.x; // radius of rolling cylinder
+    
+    float v = 1.5 * Resolution.x / rep;
+    
+    float time = fract(scale / rep);
+    
+    vec2 s = FRAGCOORD.xy; // pixel coordinates
+    
+    vec2 u = normalize(vec2(5.0, 1.0)); // direction of movement
+    
+    vec2 o = vec2(time *rep* v, 0.0); // origin of cylinder
+    
+    float d = dot(s - o, u); // distance to generator of cylinder
+    
+    vec2 h = s - u * d; // projection on generator
+    
+    bool onCylinder = abs(d) < R;
+    
+    float angle = onCylinder ? asin(d / R) : 0.0;
+    
+    bool neg = d < 0.0;
+    
+    float a0 = 3.141592653 + angle;
+    
+    float a = onCylinder ? (neg ? -angle : (3.141592653 + angle)) : 0.0; // angle
+    
+    float l = R * a; // length of arc
+    
+    vec2 p = h - u * l; // unwrapped point from cylinder to plane
+    
+    bool outside = any(lessThan(p, vec2(0.0))) || any(greaterThan(p, Resolution.xy));
+    
+    bool previous = (!onCylinder ||outside) && neg;
+    
+    vec4 color = (previous ? mix(0.1, 1.0, time): 1.0) * texture(TEXTURE, (!onCylinder || outside ? FRAGCOORD.xy : p) / Resolution.xy);
+ 
+    l = R * a0; // length of arc
+    
+    p = h - u * l; // unwrapped point from cylinder to plane
+    
+    outside = any(lessThan(p, vec2(0.0))) || any(greaterThan(p, Resolution.xy));
+    
+    color = outside || !onCylinder ? color : texture(TEXTURE, p / Resolution.xy);
+    
+    // Output to screen
+    COLOR = color;
+    //COLOR = finalColor;
+}
